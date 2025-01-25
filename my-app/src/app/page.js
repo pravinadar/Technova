@@ -1,119 +1,29 @@
-import Image from "next/image";
-import ProjectCard from "@/components/ProjectCard";
+"use client"
 
-export default function HomePage() {
+import { motion } from "framer-motion"
+import Navbar from "../components/Navbar"
+import Header from "../components/Header"
+import FeaturedProjects from "../components/FeaturedProjects"
+import AboutSection from "../components/AboutSection"
+import Footer from "../components/Footer"
+// import DynamicBackground from "../components/"
+
+export default function Home() {
   return (
-    <div className="min-h-screen bg-gray-100 p-8 flex flex-wrap gap-8 justify-center">
-      <ProjectCard
-        projectImage="https://placehold.co/600x400"
-        profileImage="https://placehold.co/600x400"
-        title="A New Play: the devil & i"
-        username="William Reymann"
-        timeLeft="21 hours"
-        fundingPercent="51"
-        hoverDetails="Matthew Gasda's new play about an open marriage between two neurotic novelists."
-      />
-      <ProjectCard
-        projectImage="https://placehold.co/600x400"
-        profileImage="https://placehold.co/600x400"
-        title="On The Other Side I Found Myself Standing"
-        username="Annie McKenzie"
-        timeLeft="11 days"
-        fundingPercent="22"
-        hoverDetails="A story of rediscovery and connection, told with passion and heart."
-      />
-      <ProjectCard
-        projectImage="https://placehold.co/600x400"
-        profileImage="https://placehold.co/600x400"
-        title="Broken Images"
-        username="Neeraja Ramjee"
-        timeLeft="34 days"
-        fundingPercent="18"
-        hoverDetails="An exploration of identity, cultural divides, and personal growth."
-      />
-      <ProjectCard
-        projectImage="https://placehold.co/600x400"
-        profileImage="https://placehold.co/600x400"
-        title="Broken Images"
-        username="Neeraja Ramjee"
-        timeLeft="34 days"
-        fundingPercent="18"
-        hoverDetails="An exploration of identity, cultural divides, and personal growth."
-      />
-      <ProjectCard
-        projectImage="https://placehold.co/600x400"
-        profileImage="https://placehold.co/600x400"
-        title="Broken Images"
-        username="Neeraja Ramjee"
-        timeLeft="34 days"
-        fundingPercent="18"
-        hoverDetails="An exploration of identity, cultural divides, and personal growth."
-      />
-      <ProjectCard
-        projectImage="https://placehold.co/600x400"
-        profileImage="https://placehold.co/600x400"
-        title="Broken Images"
-        username="Neeraja Ramjee"
-        timeLeft="34 days"
-        fundingPercent="18"
-        hoverDetails="An exploration of identity, cultural divides, and personal growth."
-      />
-      <ProjectCard
-        projectImage="https://placehold.co/600x400"
-        profileImage="https://placehold.co/600x400"
-        title="Broken Images"
-        username="Neeraja Ramjee"
-        timeLeft="34 days"
-        fundingPercent="18"
-        hoverDetails="An exploration of identity, cultural divides, and personal growth."
-      />
-      <ProjectCard
-        projectImage="https://placehold.co/600x400"
-        profileImage="https://placehold.co/600x400"
-        title="Broken Images"
-        username="Neeraja Ramjee"
-        timeLeft="34 days"
-        fundingPercent="18"
-        hoverDetails="An exploration of identity, cultural divides, and personal growth."
-      />
-      <ProjectCard
-        projectImage="https://placehold.co/600x400"
-        profileImage="https://placehold.co/600x400"
-        title="Broken Images"
-        username="Neeraja Ramjee"
-        timeLeft="34 days"
-        fundingPercent="18"
-        hoverDetails="An exploration of identity, cultural divides, and personal growth."
-      />
-      <ProjectCard
-        projectImage="https://placehold.co/600x400"
-        profileImage="https://placehold.co/600x400"
-        title="Broken Images"
-        username="Neeraja Ramjee"
-        timeLeft="34 days"
-        fundingPercent="18"
-        hoverDetails="An exploration of identity, cultural divides, and personal growth."
-      />
-      <ProjectCard
-        projectImage="https://placehold.co/600x400"
-        profileImage="https://placehold.co/600x400"
-        title="Broken Images"
-        username="Neeraja Ramjee"
-        timeLeft="34 days"
-        fundingPercent="18"
-        hoverDetails="An exploration of identity, cultural divides, and personal growth."
-      />
-      <ProjectCard
-        projectImage="https://placehold.co/600x400"
-        profileImage="https://placehold.co/600x400"
-        title="Broken Images"
-        username="Neeraja Ramjee"
-        timeLeft="34 days"
-        fundingPercent="18"
-        hoverDetails="An exploration of identity, cultural divides, and personal growth."
-      />
-    </div>
-  );
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="min-h-screen flex flex-col relative overflow-hidden bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100"
+    >
+      {/* <DynamicBackground /> */}
+      <Navbar />
+      <main className="flex-grow relative z-10">
+        <Header />
+        <FeaturedProjects />
+        <AboutSection />
+      </main>
+      <Footer />
+    </motion.div>
+  )
 }
-
-

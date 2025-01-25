@@ -1,6 +1,6 @@
-'use client'
-import { useState } from "react";
-import { Bookmark } from "lucide-react";
+'use client';
+import { useState } from 'react';
+import { Bookmark } from 'lucide-react';
 
 export default function ProjectCard({
   projectImage,
@@ -9,63 +9,80 @@ export default function ProjectCard({
   username,
   timeLeft,
   fundingPercent,
-  hoverDetails,
+  description,
+  categories,
 }) {
-  const [isHovered, setIsHovered] = useState(false);
   const [isBookmarked, setIsBookmarked] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
     <div
-      className="relative w-full max-w-sm max-h-min overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300"
+      className={`relative max-w-96 bg-white rounded-lg shadow-md overflow-hidden transition-transform ${
+        isHovered ? 'z-20 scale-110' : 'hover:scale-105'
+      }`}
+      style={{ height: '430px' }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Project Image */}
-      <img
-        src={projectImage}
-        alt="Project"
-        className="w-full h-48 object-cover"
-      />
-
-      {/* Hover Details */}
-      {isHovered && (
-        <div className="absolute inset-0 bg-black bg-opacity-75 text-white p-4 flex flex-col justify-between">
-          <p className="text-sm">{hoverDetails}</p>
-          <p className="text-xs">Category: Plays</p>
-          <p className="text-xs">Location: Greenpoint, NY</p>
-        </div>
-      )}
-
-      {/* Card Content */}
-      <div className="p-4 bg-white flex flex-col gap-2 relative">
-        {/* Bookmark */}
+      <div className="relative w-full h-48">
+        <img
+          src={projectImage}
+          alt="Project"
+          className="object-cover w-full h-full"
+        />
+        {/* Bookmark Icon */}
         <button
           onClick={() => setIsBookmarked(!isBookmarked)}
-          className="absolute top-4 right-4 bg-white p-1 rounded-full shadow-md"
+          className="absolute z-10 top-2 right-2 p-2 bg-white rounded-full shadow hover:bg-gray-200"
         >
           <Bookmark
-            size={20}
-            className={isBookmarked ? "text-blue-600 fill-current" : "text-gray-600"}
+            size={24}
+            className={`${isBookmarked ? 'fill-black' : ''}`}
           />
         </button>
+      </div>
 
-        {/* Profile and Title */}
-        <div className="flex items-center gap-3">
+      {/* Card Content */}
+      <div className="p-4">
+        {/* Profile Section */}
+        <div className="flex items-center gap-4 mb-2">
           <img
             src={profileImage}
             alt="Profile"
             className="w-10 h-10 rounded-full object-cover"
           />
           <div>
-            <h3 className="text-lg font-semibold">{title}</h3>
+            <h2 className="font-bold text-lg">{title}</h2>
             <p className="text-sm text-gray-500">{username}</p>
           </div>
         </div>
 
-        {/* Time Left and Funding */}
-        <div className="flex justify-between items-center mt-2">
-          <p className="text-sm text-gray-500">{timeLeft} left</p>
-          <p className="text-sm font-semibold text-green-600">{fundingPercent}% funded</p>
+        {/* Description */}
+        <p
+          className={`text-sm text-gray-700 mb-2 ${
+            isHovered ? 'line-clamp-3' : 'truncate'
+          }`}
+        >
+          {description}
+        </p>
+
+        {/* Categories */}
+        <div className="flex flex-wrap gap-2 mb-2">
+          {categories.map((category, index) => (
+            <span
+              key={index}
+              className="px-2 py-1 bg-gray-200 text-xs text-gray-600 rounded-full"
+            >
+              {category}
+            </span>
+          ))}
+        </div>
+
+        {/* Time Left and Funding Info */}
+        <div className="text-sm text-gray-700 flex justify-between">
+          <span>{timeLeft} left</span>
+          <span>{fundingPercent}% funded</span>
         </div>
       </div>
     </div>
