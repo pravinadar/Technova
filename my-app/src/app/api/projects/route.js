@@ -9,7 +9,9 @@ import { getToken } from "next-auth/jwt";
 export async function GET(request) {
   try {
     await db();
-    const projects = await Project.find()
+    const url = new URL(request.url);
+    const query = url.searchParams.get('query') || {};
+    const projects = await Project.find(query)
       .populate("creator", "name email")
       .populate("collaborators", "name email");
     
