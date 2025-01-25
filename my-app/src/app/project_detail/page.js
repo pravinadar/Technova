@@ -1,27 +1,39 @@
 import ProjectDetail from "@/components/ProjectDetail";
 import ProjectDiscussion from "@/components/ProjectDiscussion";
+import ProjectDetail2 from "@/components/ProjectDetails2";
 import Navbar from "@/components/Navbar";
 
 export default function HomePage() {
-    
-        // Random data for the project details
-        const projectData = {
-            title: 'A New Play: the devil & i',
-            media: [
-                { type: 'image', url: 'https://placehold.co/600x600' },
-                { type: 'video', url: 'https://cdn.pixabay.com/video/2025/01/07/251262_large.mp4' },
-                { type: 'image', url: 'https://placehold.co/600x400' },
-            ],
-            budget: 7000,
-            funded: 3615,
-            contributors: 36,
-            hoursLeft: 17,
-        };
 
-        return (
-            <div>
-                <Navbar/>
-                <ProjectDetail
+    // Random data for the project details
+    const projectData = {
+        title: 'Save the Forests Initiative',
+        media: [
+            { type: 'image', url: 'https://example.com/image1.jpg' },
+            { type: 'image', url: 'https://example.com/image2.jpg' },
+            { type: 'video', url: 'https://example.com/video1.mp4' },
+        ],
+        budget: 50000,
+        funded: 20000,
+        contributors: 150,
+        hoursLeft: 72,
+        description: 'This initiative aims to protect endangered forests by purchasing land and implementing sustainable management practices.',
+        faq: [
+            { question: 'What will the funds be used for?', answer: 'Funds will be used for land acquisition and sustainable management.' },
+            { question: 'How can I contribute?', answer: 'You can contribute by donating or volunteering for our programs.' },
+        ],
+        updates: 'We have successfully acquired 50 acres of forest land and are working on planting native species.',
+        comments: [
+            'This is such a great initiative!',
+            'How can I volunteer to help?',
+            'Excited to see the progress on this project!'
+        ],
+    };
+
+    return (
+        <div>
+            <Navbar />
+            {/* <ProjectDetail
                     title={projectData.title}
                     media={projectData.media}
                     budget={projectData.budget}
@@ -32,11 +44,18 @@ export default function HomePage() {
                 <ProjectDiscussion
                 
                     description= "This is the description of the project."
-                    faq= {["What is this project about?", "How can I support it?"]}
+                    faq= {[
+                        { question: "What is this project about?", answer: "This project aims to create something amazing." },
+                        { question: "How can I support it?", answer: "You can support by backing the project or sharing it with others." },
+                    ]}
                     updates= "No updates yet."
                     comments= {["Great project!", "Looking forward to seeing more."]}
-                />
-            </div>
-        );
-    
+                /> */}
+
+            <ProjectDetail2 {...projectData} />
+
+
+        </div>
+    );
+
 }
