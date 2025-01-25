@@ -17,10 +17,11 @@ const ProjectDiscussion = ({ description, faq, updates, comments }) => {
                 return (
                     <section>
                         <h2 className="text-xl font-semibold mb-2">FAQ</h2>
-                        <ul className="list-disc pl-5 space-y-2">
+                        <ul className="space-y-4">
                             {faq.map((item, index) => (
                                 <li key={index} className="text-gray-700">
-                                    {item}
+                                    <p className="font-medium">{item.question}</p>
+                                    <p className="text-gray-600">{item.answer}</p>
                                 </li>
                             ))}
                         </ul>
