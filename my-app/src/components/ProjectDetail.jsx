@@ -1,6 +1,5 @@
 'use client'
 import React, { useState } from 'react';
-import Navbar from './Navbar';
 
 function ProjectDetail({
     title = 'Untitled Project',
@@ -36,7 +35,6 @@ function ProjectDetail({
     return (
         <div>
 
-            <Navbar />
             <div className="flex flex-col md:flex-row bg-gray-100 p-6 rounded-2xl shadow-lg mx-auto h-screen">
                 {/* Media Carousel Section */}
                 <div className="h-full md:w-1/2 flex flex-col items-center space-y-4 pr-4">

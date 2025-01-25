@@ -1,4 +1,5 @@
 import ProjectDetail from "@/components/ProjectDetail";
+import ProjectDiscussion from "@/components/ProjectDiscussion";
 import Navbar from "@/components/Navbar";
 
 export default function HomePage() {
@@ -19,6 +20,7 @@ export default function HomePage() {
 
         return (
             <div>
+                <Navbar/>
                 <ProjectDetail
                     title={projectData.title}
                     media={projectData.media}
@@ -26,6 +28,13 @@ export default function HomePage() {
                     funded={projectData.funded}
                     contributors={projectData.contributors}
                     hoursLeft={projectData.hoursLeft}
+                />
+                <ProjectDiscussion
+                
+                    description= "This is the description of the project."
+                    faq= {["What is this project about?", "How can I support it?"]}
+                    updates= "No updates yet."
+                    comments= {["Great project!", "Looking forward to seeing more."]}
                 />
             </div>
         );
