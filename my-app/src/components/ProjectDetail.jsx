@@ -35,10 +35,10 @@ function ProjectDetail({
     return (
         <div>
 
-            <div className="flex flex-col md:flex-row bg-gray-100 p-6 rounded-2xl shadow-lg mx-auto h-screen">
+            <div className="flex flex-col  bg-gray-100 p-6  rounded-2xl shadow-lg mx-auto h-screen items-center ">
                 {/* Media Carousel Section */}
                 <div className="h-full md:w-1/2 flex flex-col items-center space-y-4 pr-4">
-                    <div className="relative w-full h-[400px] rounded-xl overflow-hidden shadow-md">
+                    <div className=" w-full h-[400px] rounded-xl overflow-hidden shadow-md">
                         {media[currentMediaIndex].type === 'image' ? (
                             <img
                                 src={media[currentMediaIndex].url}
