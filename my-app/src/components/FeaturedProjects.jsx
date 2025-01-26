@@ -3,35 +3,39 @@
 import { motion } from "framer-motion"
 import { Progress } from "@/components/ui/progress"
 
-const projects = [
-  {
-    title: "Neighborhood Cleanup",
-    description: "Join us in cleaning up local parks and streets to create a cleaner, safer environment for all.",
-    raised: 7500,
-    goal: 10000,
-    image: "/placeholder.svg?height=300&width=400",
-  },
-  {
-    title: "Youth Mentorship Program",
-    description:
-      "Support our initiative to pair experienced mentors with at-risk youth, fostering personal growth and community engagement.",
-    raised: 15000,
-    goal: 25000,
-    image: "/placeholder.svg?height=300&width=400",
-  },
-  {
-    title: "Community Garden",
-    description:
-      "Help us transform vacant lots into thriving community gardens, promoting sustainable living and food security.",
-    raised: 5000,
-    goal: 12000,
-    image: "/placeholder.svg?height=300&width=400",
-  },
-]
+// const projects = [
+//   {
+//     title: "Neighborhood Cleanup",
+//     description: "Join us in cleaning up local parks and streets to create a cleaner, safer environment for all.",
+//     raised: 7500,
+//     goal: 10000,
+//     image: "/placeholder.svg?height=300&width=400",
+//   },
+//   {
+//     title: "Youth Mentorship Program",
+//     description:
+//       "Support our initiative to pair experienced mentors with at-risk youth, fostering personal growth and community engagement.",
+//     raised: 15000,
+//     goal: 25000,
+//     image: "/placeholder.svg?height=300&width=400",
+//   },
+//   {
+//     title: "Community Garden",
+//     description:
+//       "Help us transform vacant lots into thriving community gardens, promoting sustainable living and food security.",
+//     raised: 5000,
+//     goal: 12000,
+//     image: "/placeholder.svg?height=300&width=400",
+//   },
+// ]
 
-export default function FeaturedProjects() {
+export default function FeaturedProjects({projects,isLoading,error}) {
+  if (isLoading) {
+    return <div className="text-center text-lg text-gray-600">Loading...</div>;
+  }
+
   return (
-    (<section className="py-20 px-6 bg-gradient-to-br from-indigo-50 to-purple-50">
+    <section className="py-20 px-6 bg-gradient-to-br from-indigo-50 to-purple-50">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-4xl font-bold mb-12 text-center text-indigo-800">Featured Projects</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -76,7 +80,7 @@ export default function FeaturedProjects() {
           ))}
         </div>
       </div>
-    </section>)
+    </section>
   );
 }
 

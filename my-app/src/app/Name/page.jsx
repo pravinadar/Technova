@@ -1,13 +1,14 @@
-"use client"
+"use client";
 
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import AnimatedBackground from "@/components/AnimatedBackground";
+import { UserIcon } from "lucide-react"; // Import a profile icon
 
-export default function DetailsPage() {
+export default function ProfilePage() {
   const [details, setDetails] = useState({
     street: "",
     city: "",
@@ -17,16 +18,43 @@ export default function DetailsPage() {
     phone: "",
     dob: "",
     gender: "",
+    profilePic: null, // Adding profile picture field
   });
 
+  // Simulating API call to fetch user details
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      // Replace with your API endpoint
+      const userDetails = {
+        street: "123 Main St",
+        city: "Mumbai",
+        state: "Maharashtra",
+        country: "India",
+        pinCode: "400001",
+        phone: "9876543210",
+        dob: "2000-01-01",
+        gender: "Male",
+        profilePic: null, // Initial value
+      };
+      setDetails(userDetails);
+    };
+
+    fetchUserDetails();
+  }, []);
+
   const handleChange = (e) => {
-    const { id, value } = e.target;
-    setDetails((prevDetails) => ({ ...prevDetails, [id]: value }));
+    const { id, value, files } = e.target;
+    if (id === "profilePic" && files.length > 0) {
+      setDetails((prevDetails) => ({ ...prevDetails, profilePic: files[0] }));
+    } else {
+      setDetails((prevDetails) => ({ ...prevDetails, [id]: value }));
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Details submitted:", details);
+    console.log("Updated details:", details);
+    // Call API to save updated details
   };
 
   const formAnimation = {
@@ -56,11 +84,27 @@ export default function DetailsPage() {
         animate="visible"
         variants={formAnimation}
       >
+        <motion.div
+          className="flex items-center justify-center mb-6"
+          variants={itemAnimation}
+        >
+          <div className="w-24 h-24 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg">
+            {details.profilePic ? (
+              <img
+                src={URL.createObjectURL(details.profilePic)}
+                alt="Profile"
+                className="w-full h-full object-cover rounded-full"
+              />
+            ) : (
+              <UserIcon className="text-white w-12 h-12" />
+            )}
+          </div>
+        </motion.div>
         <motion.h2
           className="text-3xl font-bold mb-6 text-center text-indigo-800"
           variants={itemAnimation}
         >
-          Enter Your Details
+          Your Profile
         </motion.h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           {[
@@ -110,11 +154,26 @@ export default function DetailsPage() {
             </select>
           </motion.div>
           <motion.div variants={itemAnimation}>
+            <label
+              htmlFor="profilePic"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
+              Profile Picture
+            </label>
+            <input
+              id="profilePic"
+              type="file"
+              accept="image/*"
+              onChange={handleChange}
+              className="w-full p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
+            />
+          </motion.div>
+          <motion.div variants={itemAnimation}>
             <Button
               type="submit"
               className="w-full bg-gradient-to-r from-indigo-500 to-purple-600 text-white transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
             >
-              Submit Details
+              Update Profile
             </Button>
           </motion.div>
         </form>
@@ -122,7 +181,13 @@ export default function DetailsPage() {
           className="mt-4 text-center text-sm text-gray-600"
           variants={itemAnimation}
         >
-          Return to <Link href="/login" className="text-indigo-600 hover:text-indigo-800 font-medium transition-colors duration-300">Login</Link>
+          Go back to{" "}
+          <Link
+            href="/dashboard"
+            className="text-indigo-600 hover:text-indigo-800 font-medium transition-colors duration-300"
+          >
+            Dashboard
+          </Link>
         </motion.p>
       </motion.div>
     </div>
