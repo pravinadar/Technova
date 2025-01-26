@@ -34,19 +34,19 @@ function ProjectDetail({
             case 'Description':
                 return (
                     <section>
-                        <h2 className="text-xl font-semibold mb-2">Description</h2>
-                        <p className="text-gray-700">{description}</p>
+                        <h2 className="text-2xl font-bold mb-4 text-primary">Description</h2>
+                        <p className="text-gray-700 leading-relaxed">{description}</p>
                     </section>
                 );
             case 'FAQ':
                 return (
                     <section>
-                        <h2 className="text-xl font-semibold mb-2">FAQ</h2>
-                        <ul className="space-y-4">
+                        <h2 className="text-2xl font-bold mb-4 text-primary">FAQ</h2>
+                        <ul className="space-y-6">
                             {faq.map((item, index) => (
-                                <li key={index} className="text-gray-700">
-                                    <p className="font-medium">{item.question}</p>
-                                    <p className="text-gray-600">{item.answer}</p>
+                                <li key={index} className="bg-gray-100 p-4 rounded-lg shadow">
+                                    <p className="font-semibold text-gray-800">{item.question}</p>
+                                    <p className="text-gray-600 mt-2">{item.answer}</p>
                                 </li>
                             ))}
                         </ul>
@@ -55,19 +55,19 @@ function ProjectDetail({
             case 'Updates':
                 return (
                     <section>
-                        <h2 className="text-xl font-semibold mb-2">Updates</h2>
-                        <p className="text-gray-700">{updates}</p>
+                        <h2 className="text-2xl font-bold mb-4 text-primary">Updates</h2>
+                        <p className="text-gray-700 leading-relaxed">{updates}</p>
                     </section>
                 );
             case 'Comments':
                 return (
                     <section>
-                        <h2 className="text-xl font-semibold mb-2">Comments</h2>
-                        <div className="space-y-4">
+                        <h2 className="text-2xl font-bold mb-4 text-primary">Comments</h2>
+                        <div className="space-y-6">
                             {comments.map((comment, index) => (
                                 <div
                                     key={index}
-                                    className="bg-gray-50 p-4 rounded-lg shadow-sm border"
+                                    className="bg-white p-4 rounded-lg shadow border border-gray-200"
                                 >
                                     <p className="text-gray-800">{comment}</p>
                                 </div>
@@ -81,14 +81,14 @@ function ProjectDetail({
     };
 
     return (
-        <div className="min-h-screen bg-gray-100 p-6">
-            <div className="max-w-full mx-auto bg-white rounded-2xl shadow-lg">
-                <div className="flex flex-col md:flex-row">
+        <div className="min-h-screen bg-gradient-to-r from-blue-50 via-purple-50 to-pink-50 py-8 px-4 ">
+            <div className=" mx-auto bg-white rounded-3xl shadow-xl overflow-hidden">
+                <div className="grid md:grid-cols-2">
                     {/* Media Carousel Section */}
-                    <div className="md:w-1/2 p-6">
+                    <div className="p-6">
                         {media && media.length > 0 ? (
                             <>
-                                <div className="relative w-full h-[400px] rounded-xl overflow-hidden shadow-md">
+                                <div className="relative w-full h-[400px] rounded-xl overflow-hidden shadow-lg">
                                     {media[currentMediaIndex].type === 'image' ? (
                                         <img
                                             src={media[currentMediaIndex].url}
@@ -98,8 +98,7 @@ function ProjectDetail({
                                     ) : (
                                         <video
                                             controls
-                                            className="w-full h-auto"
-                                            style={{ height: '400px' }}
+                                            className="w-full h-full object-cover"
                                         >
                                             <source src={media[currentMediaIndex].url} type="video/mp4" />
                                             Your browser does not support the video tag.
@@ -109,13 +108,13 @@ function ProjectDetail({
                                 <div className="flex justify-between mt-4">
                                     <button
                                         onClick={handlePrev}
-                                        className="bg-gray-300 px-4 py-2 rounded-lg shadow hover:bg-gray-400 transition"
+                                        className="bg-primary-light px-4 py-2 rounded-lg shadow hover:bg-primary transition text-white"
                                     >
                                         Previous
                                     </button>
                                     <button
                                         onClick={handleNext}
-                                        className="bg-gray-300 px-4 py-2 rounded-lg shadow hover:bg-gray-400 transition"
+                                        className="bg-primary-light px-4 py-2 rounded-lg shadow hover:bg-primary transition text-white"
                                     >
                                         Next
                                     </button>
@@ -129,18 +128,20 @@ function ProjectDetail({
                     </div>
 
                     {/* Details Section */}
-                    <div className="md:w-1/2 p-6 flex flex-col">
-                        <h1 className="text-3xl font-bold text-gray-800 mb-4 text-center">{title}</h1>
+                    <div className="p-6 flex flex-col">
+                        <h1 className="text-4xl font-extrabold text-gray-900 mb-6 text-center">
+                            {title}
+                        </h1>
 
                         {/* Progress Section */}
-                        <div className="w-full bg-white p-4 rounded-xl shadow-md mb-6">
+                        <div className="w-full bg-gray-50 p-6 rounded-xl shadow-md mb-6">
                             <div className="flex justify-between items-center mb-4">
                                 <p className="text-gray-700 font-semibold">Goal: ${budget.toLocaleString()}</p>
                                 <p className="text-gray-700 font-semibold">Funded: ${funded.toLocaleString()}</p>
                             </div>
                             <div className="w-full bg-gray-300 rounded-full h-4">
                                 <div
-                                    className="bg-green-500 h-4 rounded-full"
+                                    className="bg-gradient-to-r from-green-400 via-green-500 to-green-600 h-4 rounded-full"
                                     style={{ width: `${progress}%` }}
                                 ></div>
                             </div>
@@ -155,10 +156,10 @@ function ProjectDetail({
 
                         {/* Action Buttons */}
                         <div className="mt-6 flex justify-around w-full">
-                            <button className="bg-green-500 text-white px-6 py-2 rounded-xl shadow-md hover:bg-green-600 transition">
+                            <button className="bg-gradient-to-r from-green-500 to-green-700 text-white px-6 py-3 rounded-xl shadow-md hover:opacity-90 transition">
                                 Back this project
                             </button>
-                            <button className="bg-gray-300 px-6 py-2 rounded-xl shadow-md hover:bg-gray-400 transition">
+                            <button className="bg-gradient-to-r from-gray-300 to-gray-400 text-gray-800 px-6 py-3 rounded-xl shadow-md hover:opacity-90 transition">
                                 Remind me
                             </button>
                         </div>
@@ -171,10 +172,10 @@ function ProjectDetail({
                         {['Description', 'FAQ', 'Updates', 'Comments'].map((tab) => (
                             <button
                                 key={tab}
-                                className={`flex-1 text-center p-4 font-medium ${
+                                className={`flex-1 text-center py-4 font-medium text-lg transition ${
                                     activeTab === tab
-                                        ? 'border-b-2 border-blue-500 text-blue-500'
-                                        : 'hover:bg-gray-200'
+                                        ? 'text-primary border-b-2 border-primary'
+                                        : 'text-gray-600 hover:text-primary'
                                 }`}
                                 onClick={() => setActiveTab(tab)}
                             >

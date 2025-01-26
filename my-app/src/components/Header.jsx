@@ -4,6 +4,9 @@ import { motion } from "framer-motion"
 import Image from "next/image"
 
 export default function Header() {
+  const handleRedirect = () => {
+    window.location.href = "/view_all_projects";
+  };
   return (
     (<header
       className="relative h-screen flex items-center justify-center overflow-hidden">
@@ -37,7 +40,9 @@ export default function Header() {
         <motion.button
           className="bg-gradient-to-r from-pink-500 to-indigo-500 text-white px-8 py-3 rounded-full text-lg font-semibold shadow-lg"
           whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(236, 72, 153, 0.5)" }}
-          whileTap={{ scale: 0.95 }}>
+          whileTap={{ scale: 0.95 }}
+          onClick={handleRedirect}
+          >
           Get Started
         </motion.button>
       </motion.div>
